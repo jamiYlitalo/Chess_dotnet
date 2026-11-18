@@ -1,0 +1,119 @@
+:root {
+  color-scheme: light;
+  --ink: #252b2a;
+  --muted: #78817b;
+  --paper: #f5f2eb;
+  --card: #fffefa;
+  --green: #496d5c;
+  --green-dark: #365346;
+  --sage: #dce5d8;
+  --board-light: #eee9dc;
+  --board-dark: #72917a;
+  --line: #e9e6de;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+button { font: inherit; }
+
+.layout {
+  width: min(1120px, calc(100% - 64px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 66px 0 42px;
+  display: grid;
+  grid-template-columns: minmax(270px, 350px) minmax(400px, 540px);
+  align-items: center;
+  justify-content: space-between;
+  gap: 64px;
+}
+
+.intro { align-self: center; padding-bottom: 12px; }
+.eyebrow { margin: 0; color: var(--muted); font-size: 10px; font-weight: 700; letter-spacing: .16em; }
+h1 { margin: 12px 0 8px; font: 600 clamp(46px, 5vw, 64px)/1 Georgia, serif; letter-spacing: -.045em; }
+h1 span { color: var(--green); }
+.description { max-width: 270px; margin: 0; color: #707873; font-size: 14px; line-height: 1.7; }
+
+.game-card {
+  margin-top: 37px;
+  padding: 21px 22px 18px;
+  border: 1px solid #eeece4;
+  border-radius: 12px;
+  background: var(--card);
+  box-shadow: 0 8px 26px rgb(49 58 47 / 4%);
+}
+
+.game-card-top { display: flex; align-items: center; gap: 13px; }
+.turn-mark, .player-dot { flex: 0 0 auto; border-radius: 50%; }
+.turn-mark { width: 28px; height: 28px; border: 1px solid #d5d3cb; background: #fff; box-shadow: inset 0 0 0 7px #373b39; }
+.turn-mark.black { background: #373b39; box-shadow: inset 0 0 0 7px #373b39; }
+.game-card-top .eyebrow { font-size: 9px; }
+.game-card h2 { margin: 3px 0 0; font-size: 16px; font-weight: 600; }
+.game-message { min-height: 22px; margin: 17px 0 14px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+.game-message.alert { color: #a35340; }
+.card-actions { display: flex; align-items: center; gap: 16px; }
+.primary-button { min-height: 38px; padding: 0 17px; border: 0; border-radius: 6px; background: var(--green); color: white; cursor: pointer; font-size: 12px; font-weight: 600; transition: background .15s, transform .15s; }
+.primary-button:hover { background: var(--green-dark); transform: translateY(-1px); }
+.primary-button:disabled { cursor: wait; opacity: .65; transform: none; }
+.text-button { padding: 8px 0; border: 0; background: transparent; color: var(--green-dark); cursor: pointer; font-size: 12px; font-weight: 600; }
+.text-button:hover { text-decoration: underline; }
+
+.moves-section { margin-top: 34px; }
+.section-heading { display: flex; align-items: baseline; justify-content: space-between; padding-bottom: 11px; border-bottom: 1px solid var(--line); }
+.section-heading h2 { margin: 0; font-size: 13px; font-weight: 700; }
+.section-heading span, .empty-history { color: var(--muted); font-size: 11px; }
+.move-list { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; max-height: 172px; margin: 0; padding: 8px 0 0; overflow-y: auto; list-style: none; }
+.move-pair { display: grid; grid-template-columns: 25px 1fr 1fr; align-items: center; min-height: 27px; padding: 0 7px; border-radius: 4px; font-size: 11px; }
+.move-pair:nth-child(odd) { background: rgb(255 254 250 / 75%); }
+.move-number { color: #a0a69e; font-size: 10px; }
+.empty-history { margin: 12px 0 0; }
+.footer-note { margin: 30px 0 0; color: #969c95; font-size: 11px; }
+
+.board-area { width: 100%; max-width: 540px; justify-self: end; }
+.player-label { display: flex; align-items: center; gap: 9px; height: 34px; font-size: 12px; font-weight: 600; }
+.player-dot { width: 16px; height: 16px; }
+.dark-dot { background: #373b39; }
+.light-dot { border: 1px solid #c8c7bd; background: #fffefa; }
+.player-hint { margin-left: auto; color: #989e97; font-size: 9px; font-weight: 600; letter-spacing: .12em; }
+.board { display: grid; width: 100%; aspect-ratio: 1; grid-template-columns: repeat(8, minmax(0, 1fr)); grid-template-rows: repeat(8, minmax(0, 1fr)); overflow: hidden; border: 7px solid #fffefa; border-radius: 8px; background: #fffefa; box-shadow: 0 16px 42px rgb(49 58 47 / 12%); }
+.square { position: relative; display: grid; min-width: 0; min-height: 0; place-items: center; padding: 0; border: 0; cursor: pointer; }
+.square.light { background: var(--board-light); }
+.square.dark { background: var(--board-dark); }
+.square:focus-visible { z-index: 1; outline: 3px solid #d68a4d; outline-offset: -3px; }
+.square.last-move.light { background: #e1ddb6; }
+.square.last-move.dark { background: #a4b276; }
+.square.selected { background: #dfc76d !important; }
+.square.legal::after { position: absolute; width: 23%; aspect-ratio: 1; border-radius: 50%; background: rgb(39 52 42 / 25%); content: ""; }
+.square.legal.has-piece::after { width: 76%; border: 5px solid rgb(39 52 42 / 26%); background: transparent; }
+.piece { z-index: 1; line-height: 1; font-family: "DejaVu Sans", "Segoe UI Symbol", serif; font-size: clamp(28px, 5.3vw, 55px); user-select: none; -webkit-user-select: none; }
+.piece.white { color: #fffdf6; text-shadow: 0 2px 2px rgb(32 40 33 / 55%), 0 0 2px #4e554f; }
+.piece.black { color: #303633; text-shadow: 0 1px 1px rgb(255 255 255 / 24%); }
+.coordinate { position: absolute; z-index: 2; font-size: clamp(8px, 1.1vw, 10px); font-weight: 700; pointer-events: none; }
+.coordinate.file { right: 4px; bottom: 3px; }
+.coordinate.rank { top: 3px; left: 4px; }
+.light .coordinate { color: #66836d; }
+.dark .coordinate { color: #f3efe3; }
+.board-caption { margin: 13px 0 0; color: #8b938b; font-family: Georgia, serif; font-size: 12px; font-style: italic; text-align: center; }
+
+@media (max-width: 760px) {
+  .layout { width: min(540px, calc(100% - 34px)); min-height: auto; padding: 35px 0 30px; grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .intro { padding-bottom: 0; }
+  .description { max-width: 340px; }
+  .game-card { margin-top: 22px; }
+  .moves-section { margin-top: 23px; }
+  .footer-note { display: none; }
+  .board-area { grid-row: 1; }
+  .player-label { height: 29px; }
+  .board { border-width: 5px; }
+  .piece { font-size: clamp(29px, 9.5vw, 50px); }
+  .coordinate { font-size: 9px; }
+}

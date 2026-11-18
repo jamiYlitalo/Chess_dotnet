@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f5f2eb">
+  <title>Chess — A little game</title>
+  <link rel="stylesheet" href="/styles.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <main class="layout">
+    <section class="intro">
+      <p class="eyebrow">A LITTLE GAME FOR TWO</p>
+      <h1>Chess<span>.</span></h1>
+      <p class="description">Take a seat, make your move, and see where the game goes.</p>
+      <div class="game-card">
+        <div class="game-card-top">
+          <div class="turn-mark" id="turn-mark" aria-hidden="true"></div>
+          <div>
+            <p class="eyebrow">NOW PLAYING</p>
+            <h2 id="turn-label">Starting game…</h2>
+          </div>
+        </div>
+        <p id="game-message" class="game-message" role="status" aria-live="polite">Setting up the board.</p>
+        <div class="card-actions">
+          <button id="new-game" class="primary-button" type="button">New game</button>
+          <button id="flip-board" class="text-button" type="button">Flip board</button>
+        </div>
+      </div>
+      <section class="moves-section" aria-label="Move history">
+        <div class="section-heading">
+          <h2>Move history</h2>
+          <span id="move-count">0 moves</span>
+        </div>
+        <ol id="move-list" class="move-list"></ol>
+        <p id="empty-history" class="empty-history">Your first move is waiting.</p>
+      </section>
+      <p class="footer-note">White begins. Choose a piece, then a square.</p>
+    </section>
+
+    <section class="board-area" aria-label="Chessboard">
+      <div class="player-label player-top">
+        <span class="player-dot dark-dot"></span>
+        <span id="black-player">Black</span>
+        <span class="player-hint">PLAYS SECOND</span>
+      </div>
+      <div id="board" class="board" role="grid" aria-label="Chess board"></div>
+      <div class="player-label player-bottom">
+        <span class="player-dot light-dot"></span>
+        <span id="white-player">White</span>
+        <span class="player-hint">PLAYS FIRST</span>
+      </div>
+      <p class="board-caption">A good game starts with a single move.</p>
+    </section>
+  </main>
+</body>
+</html>

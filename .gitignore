@@ -1,0 +1,11 @@
+# .NET build output
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio user files
+.vs/
+*.user
+*.suo
+
+# Test output
+[Tt]est[Rr]esults/
